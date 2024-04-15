@@ -48,14 +48,14 @@ You can install Postman via this website: https://www.postman.com/downloads/
     (You might want to use `cargo check` if you only need to verify your work without running the app.)
 
 ## Mandatory Checklists (Publisher)
--   [ ] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
+-   [x] Clone https://gitlab.com/ichlaffterlalu/bambangshop to a new repository.
 -   **STAGE 1: Implement models and repositories**
-    -   [ ] Commit: `Create Subscriber model struct.`
-    -   [ ] Commit: `Create Notification model struct.`
-    -   [ ] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
-    -   [ ] Commit: `Implement add function in Subscriber repository.`
-    -   [ ] Commit: `Implement list_all function in Subscriber repository.`
-    -   [ ] Commit: `Implement delete function in Subscriber repository.`
+    -   [x] Commit: `Create Subscriber model struct.`
+    -   [x] Commit: `Create Notification model struct.`
+    -   [x] Commit: `Create Subscriber database and Subscriber repository struct skeleton.`
+    -   [x] Commit: `Implement add function in Subscriber repository.`
+    -   [x] Commit: `Implement list_all function in Subscriber repository.`
+    -   [x] Commit: `Implement delete function in Subscriber repository.`
     -   [ ] Write answers of your learning module's "Reflection Publisher-1" questions in this README.
 -   **STAGE 2: Implement services and controllers**
     -   [ ] Commit: `Create Notification service struct skeleton.`
@@ -77,6 +77,9 @@ This is the place for you to write reflections:
 ### Mandatory (Publisher) Reflections
 
 #### Reflection Publisher-1
+1.  Seems like a single model struct will still do well (for now). However, I believe using an interface (or trait in Rust) is still beneficial in BambangShop case. It will allow us to define common methods that all scubscribers should implement, so other parts of the system can interact with subscribers without knowing their specific implementations. This will make the system more flexible and extensible, as new types of subscribers can be added without modifying the subject. The specific implementation of the subscriber can be defined in the concrete subscriber classes that implement the interface.
+2.  Using Vec (list) won't be sufficiend. A Vec allows duplicate values, so we need to manually performs check for duplicates when adding to the list. Using DashMap (map/dictionary) will be more efficient and convenient. DashMap ensures the uniqueness of the keys, thus duplicate keys will be overwritten. It also provides efficient lookup and modification of subscribers based on their unique identifiers.
+3.  In terms of thread safety, Rust's compiler constraints help enforce safe concurrency. However, in the case of the `SUBSCRIBERS` static variable, using DashMap is still necessary for thread safety. The DashMap library provides a concurrent hashmap implementation that allows multiple threads to access and modify the map simultaneously without requiring external synchronization. This is crucial when dealing with shared data structures accessed by multiple threads. Implementing the Singleton pattern alone would not provide the necessary thread safety guarantees. Therefore, using DashMap in this case is a suitable choice to ensure thread safety when accessing and modifying the list of subscribers.
 
 #### Reflection Publisher-2
 
