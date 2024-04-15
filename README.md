@@ -68,8 +68,8 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
     -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
     -   [x] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -87,3 +87,6 @@ This is the place for you to write reflections:
 3. Postman is helpful to test the API endpoints. I like the simple & user-friendly interface, it serves the very purpose of testing the API endpoints with just button clicks. We also could specify the params, auth, and headers easily. 
 
 #### Reflection Publisher-3
+1. Push model 
+2. The disadvantages of using pull model for the observer pattern would be that the subscribers need to regularly check for updates from the publisher, being inefficient and resource-intensive. It is also possible that there is an update from the publisher that the subscriber misses becauses it hasn't pulled the data yet. However, the advantage of using the pull model is that the subscribers can control when they want to receive updates. When updates are needed, the subscriber can pull the data from the publisher.
+3. If we don't use multi-threading notification process, the notification will be delivered from publisher to subscriber sequentially (one by one) and might take a long time if there are many subscribers. This will cause a delay in the notification delivery process. 
