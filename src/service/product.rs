@@ -51,8 +51,8 @@ impl ProductService {
         let product_opt: Option<Product> = ProductRepository::get_by_id(id);
         if product_opt.is_none() {
             return Err(compose_error_response(
-                NotFound,
-                from("Product not found.")
+                Status::NotFound,
+                String::from("Product not found.")
             ));
         }
         let product: Product = product_opt.unwrap();
